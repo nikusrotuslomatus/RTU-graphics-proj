@@ -2,7 +2,7 @@ import pygame
 from math import sqrt
 
 WIDTH, HEIGHT = 900, 500
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+WIN = pygame.display.set_mode((WIDTH, HEIGHT),pygame.RESIZABLE)
 GRAY = (108, 110, 110)
 WHITE = (150, 183, 190)
 RED = (255, 0, 0)
@@ -63,14 +63,15 @@ def DrawBezier(x0, y0, x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6):
 
 
 def draw_window():
+    WIDTH,HEIGHT=WIN.get_size()
     WIN.fill(WHITE)
     for i in range(WIDTH//50):
-        pygame.draw.line(WIN,GRAY,(50*i,50),(50*i,500),3)
+        pygame.draw.line(WIN,GRAY,(50*i,50),(50*i,HEIGHT),3)
         if i >0:
             text_surface = my_font.render(str(50*i-50), False, (0, 0, 0))
             WIN.blit(text_surface, (50*i, 10))
     for j in range(HEIGHT//50):
-        pygame.draw.line(WIN, GRAY, (50, 50*(j+1)), (900, 50*(j+1)),3)
+        pygame.draw.line(WIN, GRAY, (50, 50*(j+1)), (WIDTH, 50*(j+1)),3)
         if j >0:
             text_surface = my_font.render(str(50*j-50), False, (0, 0, 0))
             WIN.blit(text_surface, (10, 50*j))
